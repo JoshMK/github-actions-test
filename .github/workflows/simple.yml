@@ -1,14 +1,16 @@
-name: Shell Commands
+name: Sample workflow
 
 on: push
 
 jobs:
-  run-shell-commands:
+  my-test-job:
     runs-on: ubuntu-latest
     steps:
       - name: echo a string
-        run: echo "Hello World"
-      - name: multiline script
-        run: |
-          node -v 
-          npm -v
+        run: echo "Hello World!"
+  my-second-test-job:
+    runs-on: ubuntu-latest
+    needs: [my-test-job]
+    steps:
+      - name: "echo another string"
+        run: echo 'Hello world yet again!'
